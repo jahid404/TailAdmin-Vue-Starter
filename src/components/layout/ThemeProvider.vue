@@ -18,7 +18,7 @@
 
     onMounted(() => {
         const savedTheme = localStorage.getItem('theme') as Theme | null;
-        const initialTheme = savedTheme || 'light'; // Default to light theme
+        const initialTheme = savedTheme || 'light';
 
         theme.value = initialTheme;
         isInitialized.value = true;

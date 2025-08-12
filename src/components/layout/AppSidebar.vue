@@ -220,7 +220,7 @@
     </aside>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import { computed } from 'vue';
     import { useRoute } from 'vue-router';
 
@@ -251,7 +251,7 @@
                 {
                     icon: GridIcon,
                     name: 'Dashboard',
-                    subItems: [{ name: 'Ecommerce', path: '/', pro: false }],
+                    path: '/',
                 },
                 {
                     icon: CalenderIcon,
