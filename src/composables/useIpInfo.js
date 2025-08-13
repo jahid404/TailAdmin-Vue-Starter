@@ -5,37 +5,54 @@ const ipInfo = ref({});
 let fetched = false;
 
 export function useIpInfo() {
-  // get ip data
+  const loadFromSession = () => {
+    const storedIp = sessionStorage.getItem('ipAddress');
+    const storedInfo = sessionStorage.getItem('ipInfo');
+
+    if (storedIp && storedInfo) {
+      ipAddress.value = storedIp;
+      ipInfo.value = JSON.parse(storedInfo);
+      fetched = true;
+      return true;
+    }
+    return false;
+  };
+
+  const saveToSession = () => {
+    sessionStorage.setItem('ipAddress', ipAddress.value);
+    sessionStorage.setItem('ipInfo', JSON.stringify(ipInfo.value));
+  };
+
   const getIpData = async () => {
     try {
       const res = await fetch(`https://ipapi.co/${ipAddress.value}/json/`);
-      
+
       ipInfo.value = await res.json();
-      console.log(ipInfo.value);
+      saveToSession();
+      console.log('IP Info:', ipInfo.value);
     } catch (error) {
       console.error('Failed to get IP data:', error);
     }
   };
 
-  // get ip address
   const getIpAddress = async () => {
     try {
       const res = await fetch('https://api.ipify.org?format=json');
       const data = await res.json();
 
       ipAddress.value = data.ip;
-      console.log(ipAddress.value);
       await getIpData();
     } catch (error) {
       console.error('Failed to get IP:', error);
     }
   };
 
-  // initialize ip info
   const initIpInfo = async () => {
     if (!fetched) {
-      fetched = true;
-      await getIpAddress();
+      if (!loadFromSession()) {
+        fetched = true;
+        await getIpAddress();
+      }
     }
   };
 

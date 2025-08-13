@@ -1,6 +1,8 @@
 <template>
     <div>
-        <div class="rounded-2xl border border-gray-200 bg-white p-5 mb-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
+        <div
+            class="rounded-2xl border border-gray-200 bg-white p-5 mb-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6"
+        >
             <div
                 class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between"
             >
@@ -23,7 +25,7 @@
                             <p
                                 class="text-sm font-medium text-gray-800 dark:text-white/90"
                             >
-                                United States
+                                {{ ipInfo.country_name }}
                             </p>
                         </div>
 
@@ -36,7 +38,7 @@
                             <p
                                 class="text-sm font-medium text-gray-800 dark:text-white/90"
                             >
-                                Phoenix, United States
+                                {{ ipInfo.city }}, {{ ipInfo.region }}
                             </p>
                         </div>
 
@@ -49,7 +51,7 @@
                             <p
                                 class="text-sm font-medium text-gray-800 dark:text-white/90"
                             >
-                                ERT 2489
+                                {{ ipInfo.postal }}
                             </p>
                         </div>
 
@@ -62,7 +64,7 @@
                             <p
                                 class="text-sm font-medium text-gray-800 dark:text-white/90"
                             >
-                                AS4568384
+                                {{ ipInfo.asn }}
                             </p>
                         </div>
                     </div>
@@ -116,7 +118,7 @@
                         </label>
                         <input
                             type="text"
-                            value="United States"
+                            :value="ipInfo.country_name"
                             class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                         />
                     </div>
@@ -129,7 +131,7 @@
                         </label>
                         <input
                             type="text"
-                            value="Poenix, Arizona, United States"
+                            :value="`${ipInfo.city}, ${ipInfo.region}`"
                             class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                         />
                     </div>
@@ -142,7 +144,7 @@
                         </label>
                         <input
                             type="text"
-                            value="ERT 2489"
+                            :value="ipInfo.postal"
                             class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                         />
                     </div>
@@ -155,7 +157,7 @@
                         </label>
                         <input
                             type="text"
-                            value="AS4568384"
+                            :value="ipInfo.asn"
                             class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                         />
                     </div>
@@ -170,7 +172,7 @@
                     Cancel
                 </button>
                 <button
-                    @click="saveProfile"
+                    @click="isProfileAddressModal = false"
                     class="px-4 py-2 bg-brand-500 text-white rounded-lg hover:bg-brand-600"
                 >
                     Save
@@ -181,16 +183,14 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
     import Modal from '../common/Modal.vue';
+    import { useIpInfo } from '../../composables/useIpInfo';
 
+    const { ipInfo, initIpInfo } = useIpInfo();
     const isProfileAddressModal = ref(false);
-
-    const saveProfile = () => {
-        // Implement save profile logic here
-        console.log('Profile saved');
-        isProfileInfoModal.value = false;
-    };
+    
+    onMounted(() => {
+        initIpInfo();
+    });
 </script>
-
-<style></style>

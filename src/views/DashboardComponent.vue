@@ -130,7 +130,7 @@
     import { onMounted } from 'vue';
     import AdminLayout from '../components/layout/AdminLayout.vue';
     import { useIpInfo } from '../composables/useIpInfo';
-    const { ipAddress, ipInfo, initIpInfo } = useIpInfo();
+    const { initIpInfo } = useIpInfo();
 
     onMounted(async () => {
         initIpInfo();
