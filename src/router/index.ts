@@ -8,7 +8,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Ecommerce',
+      name: 'Dashboard',
       component: () => import('../views/DashboardComponent.vue'),
       meta: {
         title: 'Admin Dashboard',
