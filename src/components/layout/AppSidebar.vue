@@ -226,21 +226,16 @@
 
     import {
         GridIcon,
-        CalenderIcon,
         UserCircleIcon,
         ChevronDownIcon,
         HorizontalDots,
         PageIcon,
-        TableIcon,
         ListIcon,
-        PlugInIcon,
     } from '../../icons';
     import SidebarWidget from './SidebarWidget.vue';
-    import BoxCubeIcon from '@/icons/BoxCubeIcon.vue';
     import { useSidebar } from '@/composables/useSidebar';
 
     const route = useRoute();
-
     const { isExpanded, isMobileOpen, isHovered, openSubmenu } = useSidebar();
 
     const menuGroups = [
@@ -266,13 +261,6 @@
                     ],
                 },
                 {
-                    name: 'Tables',
-                    icon: TableIcon,
-                    subItems: [
-                        { name: 'Basic Tables', path: '/basic-tables', pro: false, new: false },
-                    ],
-                },
-                {
                     name: 'Pages',
                     icon: PageIcon,
                     subItems: [
@@ -280,32 +268,6 @@
                         { name: '404 Page', path: '/error-404', pro: false, new: false },
                     ],
                 },
-            ],
-        },
-        {
-            title: 'Others',
-            items: [
-                {
-                    icon: BoxCubeIcon,
-                    name: 'Ui Elements',
-                    subItems: [
-                        { name: 'Alerts', path: '/alerts', pro: false, new: false },
-                        { name: 'Avatars', path: '/avatars', pro: false, new: false },
-                        { name: 'Badge', path: '/badge', pro: false, new: false },
-                        { name: 'Buttons', path: '/buttons', pro: false, new: false },
-                        { name: 'Images', path: '/images', pro: false, new: false },
-                        { name: 'Videos', path: '/videos', pro: false, new: false },
-                    ],
-                },
-                {
-                    icon: PlugInIcon,
-                    name: 'Authentication',
-                    subItems: [
-                        { name: 'Signin', path: '/signin', pro: false, new: false },
-                        { name: 'Signup', path: '/signup', pro: false, new: false },
-                    ],
-                },
-                // ... Add other menu items here
             ],
         },
     ];
@@ -342,7 +304,7 @@
         el.style.height = 'auto';
         const height = el.scrollHeight;
         el.style.height = '0px';
-        el.offsetHeight; // force reflow
+        el.offsetHeight;
         el.style.height = height + 'px';
     };
 
