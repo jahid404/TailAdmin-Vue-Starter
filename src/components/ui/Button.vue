@@ -20,7 +20,7 @@
   </button>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { computed } from 'vue'
 
 interface ButtonProps {

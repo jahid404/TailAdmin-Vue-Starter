@@ -60,7 +60,7 @@
   </AdminLayout>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import Badge from '../../components/ui/Badge.vue'
 import PageBreadcrumb from '../../components/common/PageBreadcrumb.vue'

@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 interface AvatarProps {
   src: string
   alt?: string

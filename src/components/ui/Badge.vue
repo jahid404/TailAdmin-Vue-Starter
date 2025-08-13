@@ -10,7 +10,7 @@
   </span>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { computed } from 'vue'
 
 type BadgeVariant = 'light' | 'solid'

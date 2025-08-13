@@ -71,13 +71,13 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { onMounted, ref } from 'vue'
 import jsVectorMap from 'jsvectormap'
 import 'jsvectormap/dist/maps/world'
 
-const mapOneRef = ref<HTMLElement | null>(null)
-const mapInstance = ref<any>(null)
+const mapOneRef = ref(null)
+const mapInstance = ref(null)
 
 const initMap = () => {
   if (mapOneRef.value) {
@@ -123,8 +123,8 @@ const initMap = () => {
         selected: {},
         selectedHover: {},
       },
-      onRegionTooltipShow: function (event: MouseEvent, tooltip: any) {
-        const code = (event.target as HTMLElement).getAttribute('data-code')
+      onRegionTooltipShow: function (event, tooltip) {
+        const code = event.target.getAttribute('data-code')
         if (code === 'EG') {
           tooltip.setContent(tooltip.text() + ' (Hello Egypt)')
         }
