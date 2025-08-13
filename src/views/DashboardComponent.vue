@@ -126,13 +126,13 @@
     </admin-layout>
 </template>
 
-<script>
+<script setup>
+    import { onMounted } from 'vue';
     import AdminLayout from '../components/layout/AdminLayout.vue';
+    import { useIpInfo } from '../composables/useIpInfo';
+    const { ipAddress, ipInfo, initIpInfo } = useIpInfo();
 
-    export default {
-        components: {
-            AdminLayout,
-        },
-        name: 'DashboardComponent',
-    };
+    onMounted(async () => {
+        initIpInfo();
+    });
 </script>
