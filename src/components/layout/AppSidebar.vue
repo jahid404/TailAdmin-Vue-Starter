@@ -252,14 +252,6 @@
                     name: 'User Profile',
                     path: '/profile',
                 },
-
-                {
-                    name: 'Forms',
-                    icon: ListIcon,
-                    subItems: [
-                        { name: 'Form Elements', path: '/form-elements', pro: false, new: false },
-                    ],
-                },
                 {
                     name: 'Pages',
                     icon: PageIcon,
