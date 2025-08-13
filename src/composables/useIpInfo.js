@@ -29,9 +29,8 @@ export function useIpInfo() {
 
       ipInfo.value = await res.json();
       saveToSession();
-      console.log('IP Info:', ipInfo.value);
     } catch (error) {
-      console.error('Failed to get IP data:', error);
+      return false;
     }
   };
 
@@ -43,7 +42,7 @@ export function useIpInfo() {
       ipAddress.value = data.ip;
       await getIpData();
     } catch (error) {
-      console.error('Failed to get IP:', error);
+      return false;
     }
   };
 
