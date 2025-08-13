@@ -77,6 +77,7 @@
                             latitude: pos.coords.latitude,
                             longitude: pos.coords.longitude,
                             accuracy: pos.coords.accuracy,
+                            google_map_url: `https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`,
                         }),
                     (err) => resolve({ error: err.message })
                 );
