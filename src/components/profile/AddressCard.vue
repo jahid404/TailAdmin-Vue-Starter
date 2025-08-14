@@ -25,7 +25,7 @@
                             <p
                                 class="text-sm font-medium text-gray-800 dark:text-white/90"
                             >
-                                {{ ipInfo.country_name }}
+                                {{ ipInfo.country_name ?? 'Bangladesh' }}
                             </p>
                         </div>
 
@@ -38,7 +38,8 @@
                             <p
                                 class="text-sm font-medium text-gray-800 dark:text-white/90"
                             >
-                                {{ ipInfo.city }}, {{ ipInfo.region }}
+                                {{ ipInfo.city ?? 'Chittagong' }},
+                                {{ ipInfo.region ?? 'Chittagong' }}
                             </p>
                         </div>
 
@@ -51,7 +52,7 @@
                             <p
                                 class="text-sm font-medium text-gray-800 dark:text-white/90"
                             >
-                                {{ ipInfo.postal }}
+                                {{ ipInfo.postal ?? 4100 }}
                             </p>
                         </div>
 
@@ -64,7 +65,7 @@
                             <p
                                 class="text-sm font-medium text-gray-800 dark:text-white/90"
                             >
-                                {{ ipInfo.asn }}
+                                {{ ipInfo.asn ?? 'AS1246' }}
                             </p>
                         </div>
                     </div>
@@ -189,7 +190,7 @@
 
     const { ipInfo, initIpInfo } = useIpInfo();
     const isProfileAddressModal = ref(false);
-    
+
     onMounted(() => {
         initIpInfo();
     });
