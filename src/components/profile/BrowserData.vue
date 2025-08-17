@@ -91,6 +91,5 @@
 
     onMounted(() => {
         getFullClientData();
-        console.log(navigator);
     });
 </script>

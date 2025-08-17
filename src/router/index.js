@@ -1,50 +1,41 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import adminRoutes from './routes/admin-route'
+import miscRoutes from './routes/misc-route'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
+const routes = [
+  ...adminRoutes,
+  ...miscRoutes,
+]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL || '/'),
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || { left: 0, top: 0 }
   },
-  routes: [
-    {
-      path: '/',
-      name: 'Dashboard',
-      component: () => import('../views/DashboardComponent.vue'),
-      meta: {
-        title: 'Admin Dashboard',
-      },
-    },
-    {
-      path: '/profile',
-      name: 'Profile',
-      component: () => import('../views/Others/UserProfile.vue'),
-      meta: {
-        title: 'Profile',
-      },
-    },
-    {
-      path: '/blank',
-      name: 'Blank',
-      component: () => import('../views/Pages/BlankPage.vue'),
-      meta: {
-        title: 'Blank',
-      },
-    },
-
-    {
-      path: '/error-404',
-      name: '404 Error',
-      component: () => import('../views/Errors/FourZeroFour.vue'),
-      meta: {
-        title: '404 Error',
-      },
-    },
-  ],
+  routes,
 })
 
-export default router
+// nprogress config & bind with router
+NProgress.configure({
+  minimum: 0.1,
+  easing: "ease",
+  speed: 500,
+  showSpinner: false,
+  trickleSpeed: 200,
+  parent: "body",
+});
 
 router.beforeEach((to, from, next) => {
-  document.title = `${to.meta.title} | TailAdmin - Vue.js Tailwind CSS Dashboard Template`
-  next()
+  NProgress.start();
+  document.title = `${to.meta.title} | BrainWave`
+
+  next();
 })
+
+router.afterEach(() => {
+  NProgress.done();
+});
+
+export default router

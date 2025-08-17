@@ -6,7 +6,8 @@
         >
             {{ pageTitle }}
         </h2>
-        <nav>
+        
+        <nav v-if="showNav && !hasCustomSlot">
             <ol class="flex items-center gap-1.5">
                 <li>
                     <router-link
@@ -37,16 +38,22 @@
                 </li>
             </ol>
         </nav>
+
+        <slot v-else name="actions"></slot>
     </div>
 </template>
 
 <script setup>
-    import { defineProps } from 'vue';
+    import { defineProps, useSlots } from 'vue';
 
     const props = defineProps({
         pageTitle: {
             type: String,
             required: true,
         },
+        showNav: { type: Boolean, default: true },
     });
+
+    const slots = useSlots();
+    const hasCustomSlot = !!slots.actions;
 </script>

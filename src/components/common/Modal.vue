@@ -1,15 +1,16 @@
 <template>
-    <div class="fixed inset-0 flex items-center justify-center overflow-y-auto z-[99999]">
+    <div class="fixed inset-0 flex items-center justify-center overflow-y-auto z-[999]">
         <!-- Overlay -->
         <div
             class="fixed inset-0 h-full w-full bg-gray-400/50 backdrop-blur-[5px]"
             aria-hidden="true"
-            @click="$emit('close')"
+            @click="outSideClose ? $emit('close') : ''"
         ></div>
 
         <!-- Modal Container -->
         <div
-            class="relative w-full max-w-[700px] max-h-[90vh] mx-3 md:mx-0 flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-gray-900"
+            class="relative w-full max-h-[90vh] mx-3 md:mx-0 flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-gray-900"
+            :style="{ maxWidth: maxWidth }"
         >
             <!-- Header (fixed) -->
             <div
@@ -36,7 +37,7 @@
                         />
                     </svg>
                 </button>
-                
+
                 <slot name="header"></slot>
             </div>
 
@@ -54,3 +55,12 @@
         </div>
     </div>
 </template>
+
+<script setup>
+    import { defineProps } from 'vue';
+
+    const props = defineProps({
+        outSideClose: { type: Boolean, default: true },
+        maxWidth: { type: String, default: '700px' },
+    });
+</script>

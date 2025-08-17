@@ -185,8 +185,8 @@
 
 <script setup>
     import { ref, onMounted } from 'vue';
-    import Modal from '../common/Modal.vue';
-    import { useIpInfo } from '../../composables/useIpInfo';
+    import Modal from '@/components/common/Modal.vue';
+    import { useIpInfo } from '@/composables/useIpInfo';
 
     const { ipInfo, initIpInfo } = useIpInfo();
     const isProfileAddressModal = ref(false);

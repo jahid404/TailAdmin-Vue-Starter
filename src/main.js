@@ -1,18 +1,23 @@
 import './assets/main.css'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import 'jsvectormap/dist/jsvectormap.css'
-import 'flatpickr/dist/flatpickr.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import VueApexCharts from 'vue3-apexcharts'
+import Toast from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(router)
-app.use(VueApexCharts)
+app.use(router);
+app.use(Toast, {
+  position: 'top-right',
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  hideProgressBar: false,
+  icon: true,
+  newOnTop: true,
+});
 
-app.mount('#app')
+app.mount('#app');
